@@ -53,6 +53,12 @@ int main(int argc,char *argv[]){
 			expected_frame=!expected_frame;
 		}else{
 			printf("Frame %d is Incorrect. Expected Frame: %d\n",received_frame,expected_frame);
+			sprintf(buffer,"%d",!expected_frame);
+			n=write(newsockfd,buffer,sizeof(buffer));
+			if(n<0){
+				perror("Error on Writing");
+				exit(1);
+			}
 		}
 	}
 	return 0;
